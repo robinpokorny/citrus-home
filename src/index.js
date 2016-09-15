@@ -11,6 +11,9 @@ import './index.css'
 const app = firebase.initializeApp(config.firebase)
 const ref = app.database().ref()
 
+// For debugging, to be removed
+window.ref = ref
+
 ref.on('value', (snapshot) =>
   ReactDOM.render(
     <App store={snapshot.val()} />,

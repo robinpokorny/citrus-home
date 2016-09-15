@@ -5,6 +5,7 @@
   "devDependencies": {
     "react-scripts": "0.4.1"
   },
+  "homepage": "https://citrus-home.firebaseapp.com",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "firebase": "^3.4.0",

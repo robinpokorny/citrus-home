@@ -3,17 +3,17 @@ import { Panel } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 
 const controlTypes = {
-  'button': (deviceID, controlID, value) => (
+  'button': (deviceId, controlId, value) => (
     <Button
-      key={controlID}
+      key={controlId}
       bsStyle="primary"
-      onClick={(a) => console.log(deviceID, controlID, 'clicked')}
+      onClick={(a) => console.log(deviceId, controlId, 'clicked')}
     >
       {value.label}
     </Button>
   ),
-  'slider': (deviceID, controlID, value, current, onChange) => (
-    <div key={controlID}>
+  'slider': (deviceId, controlId, value, current, onChange) => (
+    <div key={controlId}>
       <h4>{value.label}:</h4>
       <input
         type="range"
@@ -21,16 +21,16 @@ const controlTypes = {
         max={100}
         step={1}
         value={current}
-        onChange={(e) => onChange(deviceID, controlID, e.target.value)}
+        onChange={(e) => onChange(deviceId, controlId, e.target.value)}
       />
     </div>
   ),
-  'select': (deviceID, controlID, value, current, onChange) => (
-    <div key={controlID}>
+  'select': (deviceId, controlId, value, current, onChange) => (
+    <div key={controlId}>
       <h4>{value.label}:</h4>
       <select
         value={current}
-        onChange={(e) => onChange(deviceID, controlID, e.target.value)}
+        onChange={(e) => onChange(deviceId, controlId, e.target.value)}
       >
         {value.options.map((label, i) => (
           <option key={i} value={i}>{label}</option>
@@ -41,7 +41,7 @@ const controlTypes = {
 }
 
 export default ({
-  id: deviceID,
+  id: deviceId,
   label,
   type,
   typeId,
@@ -52,9 +52,16 @@ export default ({
 
   return (
     <Panel header={title}>
-      {Object.entries(type.controls).map(([controlID, value]) =>
-        controlTypes[value.type](deviceID, controlID, value, controls[controlID], actions.setControlValue)
+      {Object.entries(type.controls).map(([controlId, value]) =>
+        controlTypes[value.type](deviceId, controlId, value, controls[controlId], actions.setControlValue)
       )}
+      <hr />
+      <Button
+        bsStyle="danger"
+        onClick={() => actions.removeDevice(deviceId)}
+      >
+        Remove device
+      </Button>
     </Panel>
   )
 }

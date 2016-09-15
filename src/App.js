@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
 
 import Device from './Device'
+import NewDevice from './NewDevice'
 
 export default ({ store, actions }) => (
   <div className="container">
@@ -19,8 +19,12 @@ export default ({ store, actions }) => (
         {...value}
       />
     )}
-    <Button>Add device</Button>
 
+    <NewDevice
+      actions={actions}
+      devicesTypes={store.devicesTypes}
+      newDevice={store.newDevice}
+    />
 
     <h2>Devices Types</h2>
     <ul>

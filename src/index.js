@@ -1,6 +1,8 @@
 import firebase from 'firebase'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import entries from 'object.entries'
+entries.shim()
 
 import 'bootstrap/dist/css/bootstrap.css'
 

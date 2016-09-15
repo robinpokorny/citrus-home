@@ -1,16 +1,12 @@
-import React, { Component } from 'react'
-import 'bootstrap/dist/css/bootstrap.css'
+import React from 'react'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1>Citrus Home</h1>
-        <button type="button" className="btn btn-primary">Primary</button>
-        <span className="glyphicon glyphicon-search"></span>
-      </div>
-    )
-  }
-}
-
-export default App
+export default ({ store }) => (
+  <div className="App">
+    <h1>Citrus Home</h1>
+    <ul>
+      {Object.entries(store.devices).map(([key, value]) =>
+        <li key={key}>{value.label}</li>
+      )}
+    </ul>
+  </div>
+)

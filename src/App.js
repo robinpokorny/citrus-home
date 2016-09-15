@@ -1,15 +1,11 @@
 import React from 'react'
-import { Nav, NavItem } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 import Device from './Device'
 
-export default ({ store }) => (
+export default ({ store, actions }) => (
   <div className="container">
     <div className="header clearfix">
-      <Nav bsStyle="pills" pullRight>
-        <NavItem eventKey={2} href="#">Link</NavItem>
-        <NavItem eventKey={2} href="#">Link</NavItem>
-      </Nav>
       <h3 className="text-muted">Citrus Home</h3>
     </div>
 
@@ -19,9 +15,12 @@ export default ({ store }) => (
         key={key}
         id={key}
         type={store.devicesTypes[value.typeId]}
+        actions={actions}
         {...value}
       />
     )}
+    <Button>Add device</Button>
+
 
     <h2>Devices Types</h2>
     <ul>

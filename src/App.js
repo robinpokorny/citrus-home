@@ -2,6 +2,7 @@ import React from 'react'
 import { Nav, NavItem } from 'react-bootstrap'
 
 import Device from './Device'
+import DeviceType from './DeviceType'
 import NewDevice from './NewDevice'
 
 export default ({ store, actions }) => (
@@ -32,11 +33,14 @@ export default ({ store, actions }) => (
     />
 
     <h2 id="devices-types">Devices Types</h2>
-    <ul>
-      {Object.entries(store.devicesTypes).map(([key, value]) =>
-        <li key={key}>{value.label}</li>
-      )}
-    </ul>
+    {Object.entries(store.devicesTypes).map(([key, value]) =>
+      <DeviceType
+        key={key}
+        id={key}
+        actions={actions}
+        {...value}
+      />
+    )}
 
     <footer className="footer">
         <p>© 2016 Robin Pokorny for Citrusbyte</p>

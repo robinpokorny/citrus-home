@@ -34,7 +34,11 @@ export default ({
         </FormControl>
       </FormGroup>
       {' '}
-      <Button onClick={actions.addNewDevice}>
+      <Button
+        bsStyle="primary"
+        onClick={actions.addNewDevice}
+        className="pull-right"
+      >
         Add device
       </Button>
     </Form>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Panel } from 'react-bootstrap'
-import { Button } from 'react-bootstrap'
+import { Button, ButtonGroup } from 'react-bootstrap'
 
 const controlTypes = {
   'button': (deviceId, controlId, value) => (
@@ -48,20 +48,24 @@ export default ({
   controls = {},
   actions
 }) => {
-  const title = (<h3>{label} <small>{type.label}</small></h3>)
-
-  return (
-    <Panel header={title}>
-      {Object.entries(type.controls).map(([controlId, value]) =>
-        controlTypes[value.type](deviceId, controlId, value, controls[controlId], actions.setControlValue)
-      )}
-      <hr />
+  const title = [
+    <ButtonGroup key="1" className="pull-right">
       <Button
         bsStyle="danger"
         onClick={() => actions.removeDevice(deviceId)}
       >
         Remove device
       </Button>
+    </ButtonGroup>,
+
+    <h4 key="2">{label} <small>{type.label}</small></h4>
+  ]
+
+  return (
+    <Panel header={title}>
+      {Object.entries(type.controls).map(([controlId, value]) =>
+        controlTypes[value.type](deviceId, controlId, value, controls[controlId], actions.setControlValue)
+      )}
     </Panel>
   )
 }

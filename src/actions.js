@@ -1,5 +1,10 @@
 import ref from './firebase'
-import { controlTypes } from './config'
+import { controlTypes, initial } from './config'
+
+/* --- Controls --- */
+
+export const resetToInit = () =>
+  ref.set(initial)
 
 /* --- Controls --- */
 

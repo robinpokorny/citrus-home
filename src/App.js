@@ -23,7 +23,7 @@ export default ({ store, actions }) => (
       newDevice={store.newDevice}
     />
 
-    {Object.entries(store.devices).reverse().map(([key, value]) =>
+    {Object.entries(store.devices || {}).reverse().map(([key, value]) =>
       <Device
         key={key}
         id={key}
@@ -43,7 +43,7 @@ export default ({ store, actions }) => (
         Add device type
       </Button>
     </h2>
-    {Object.entries(store.devicesTypes).reverse().map(([key, value]) =>
+    {Object.entries(store.devicesTypes || {}).reverse().map(([key, value]) =>
       <DeviceType
         key={key}
         id={key}
@@ -53,6 +53,13 @@ export default ({ store, actions }) => (
     )}
 
     <footer className="footer">
+        <a
+          href="#"
+          onClick={actions.resetToInit}
+          className="pull-right"
+        >
+          Load init config
+        </a>
         <p>© 2016 Robin Pokorny for Citrusbyte</p>
     </footer>
   </div>

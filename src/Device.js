@@ -12,7 +12,7 @@ const controlTypes = {
       {value.label}
     </Button>
   ),
-  'slider': (deviceId, controlId, value, current, onChange) => (
+  'slider': (deviceId, controlId, value, current = 50, onChange) => (
     <div key={controlId}>
       <h4>{value.label}:</h4>
       <input
@@ -25,7 +25,7 @@ const controlTypes = {
       />
     </div>
   ),
-  'select': (deviceId, controlId, value, current, onChange) => (
+  'select': (deviceId, controlId, value, current = 0, onChange) => (
     <div key={controlId}>
       <h4>{value.label}:</h4>
       <select

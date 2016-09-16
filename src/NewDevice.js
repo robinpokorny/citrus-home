@@ -1,7 +1,11 @@
 import React from 'react'
 import { Button, ControlLabel, Form, FormGroup, FormControl } from 'react-bootstrap'
 
-export default ({ devicesTypes, actions, newDevice = {} }) => (
+export default ({
+  devicesTypes,
+  actions,
+  newDevice: { label = '', typeId } = {}
+}) => (
   <Form inline>
     <FormGroup controlId="formInlineName">
       <ControlLabel>Name</ControlLabel>
@@ -9,7 +13,7 @@ export default ({ devicesTypes, actions, newDevice = {} }) => (
       <FormControl
         type="text"
         placeholder="Living room stereo"
-        value={newDevice.label}
+        value={label}
         onChange={(e) => actions.setNewDeviceLabel(e.target.value)}
       />
     </FormGroup>
@@ -18,7 +22,7 @@ export default ({ devicesTypes, actions, newDevice = {} }) => (
       <ControlLabel>Type</ControlLabel>
       {' '}
       <select
-        value={newDevice.typeId}
+        value={typeId}
         onChange={(e) => actions.setNewDeviceType(e.target.value)}
       >
         <option></option>

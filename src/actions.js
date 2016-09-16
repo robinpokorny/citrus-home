@@ -13,16 +13,8 @@ export const setNewDeviceType = (typeId) =>
 
 const addDevice = (label, typeId) => {
   ref
-    .child(`devicesTypes/${typeId}/controls`)
-    .once('value')
-    .then((snapshot) => snapshot.val())
-    .then((data) => {
-      const controls = {}
-      Object.entries(data).forEach(([key, value]) => controls[key] = 0)
-
-      return ({ label, typeId, controls })
-    })
-    .then((device) => ref.child('devices').push(device))
+    .child('devices')
+    .push({ label, typeId })
     .then(() => ref.child('newDevice').remove())
 }
 

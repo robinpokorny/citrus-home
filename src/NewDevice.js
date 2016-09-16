@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, ControlLabel, Form, FormGroup, FormControl, Well } from 'react-bootstrap'
 
 export default ({
-  devicesTypes,
+  devicesTypes = {},
   actions,
   newDevice: { label = '', typeId } = {}
 }) => (

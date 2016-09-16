@@ -55,16 +55,20 @@ export const removeType = (typeId) =>
     .child(`devicesTypes/${typeId}`)
     .remove()
 
+export const setTypeLabel = (typeId, value) =>
+  ref
+    .child(`devicesTypes/${typeId}/label`)
+    .set(value)
 
 export const addControlToType = (typeId) =>
   ref
     .child(`devicesTypes/${typeId}/controls/`)
     .push({ type: controlTypes.slider })
 
-export const setTypeLabel = (typeId, value) =>
+export const removeTypeControl = (typeId, controlId) =>
   ref
-    .child(`devicesTypes/${typeId}/label`)
-    .set(value)
+    .child(`devicesTypes/${typeId}/controls/${controlId}`)
+    .remove()
 
 export const setTypeControlLabel = (typeId, controlId, value) =>
   ref

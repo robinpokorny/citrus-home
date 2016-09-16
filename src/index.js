@@ -12,7 +12,7 @@ import './index.css'
 
 ref.on('value', (snapshot) =>
   ReactDOM.render(
-    <App store={snapshot.val()} actions={actions}/>,
+    <App store={snapshot.val() || {}} actions={actions}/>,
     document.getElementById('root')
   )
 )

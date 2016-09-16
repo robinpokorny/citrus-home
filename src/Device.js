@@ -65,7 +65,7 @@ export default ({
 
   return (
     <Panel header={title}>
-      {Object.entries(type.controls).map(([controlId, value]) =>
+      {Object.entries(type.controls || {}).map(([controlId, value]) =>
         renderControlTypes[value.type](
           deviceId,
           controlId,

@@ -84,6 +84,14 @@ export default ({
                   />
                 }
               </td>
+              <td className="text-right">
+                <Button
+                  bsStyle="link"
+                  onClick={() => actions.removeTypeControl(typeId, controlId)}
+                >
+                  x
+                </Button>
+              </td>
             </tr>
           )}
         </tbody>

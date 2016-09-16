@@ -47,8 +47,14 @@ export const removeDevice = (deviceId) =>
 
 export const addNewType = () =>
   ref
-    .child(`devicesTypes/`)
+    .child(`devicesTypes`)
     .push({ label: '' })
+
+export const removeType = (typeId) =>
+  ref
+    .child(`devicesTypes/${typeId}`)
+    .remove()
+
 
 export const addControlToType = (typeId) =>
   ref

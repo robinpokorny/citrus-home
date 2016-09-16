@@ -8,10 +8,25 @@ export default ({
   id: typeId,
   label = '',
   controls = {},
-  actions
+  actions,
+  removable
 }) => {
   const title = [
     <ButtonGroup key="1" className="pull-right">
+      {removable
+        ? <Button
+            bsStyle="danger"
+            onClick={() => actions.removeType(typeId)}
+          >
+            Remove type
+          </Button>
+        : <Button
+            disabled
+            title="Type used, remove devices first"
+          >
+            Remove type
+          </Button>
+      }
       <Button
         bsStyle="success"
         onClick={() => actions.addControlToType(typeId)}

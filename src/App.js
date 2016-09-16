@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Nav, NavItem } from 'react-bootstrap'
 
+import { numberOfUse } from './utils'
 import Device from './Device'
 import DeviceType from './DeviceType'
 import NewDevice from './NewDevice'
@@ -43,11 +44,12 @@ export default ({ store, actions }) => (
         Add device type
       </Button>
     </h2>
-    {Object.entries(store.devicesTypes || {}).reverse().map(([key, value]) =>
+    {Object.entries(store.devicesTypes || {}).reverse().map(([typeId, value]) =>
       <DeviceType
-        key={key}
-        id={key}
+        key={typeId}
+        id={typeId}
         actions={actions}
+        removable={numberOfUse(store.devices, typeId) === 0}
         {...value}
       />
     )}

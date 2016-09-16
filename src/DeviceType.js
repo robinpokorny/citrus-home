@@ -6,7 +6,7 @@ import { controlTypes } from './config'
 
 export default ({
   id: typeId,
-  label,
+  label = '',
   controls = {},
   actions
 }) => {
@@ -20,7 +20,13 @@ export default ({
       </Button>
     </ButtonGroup>,
 
-    <h4 key="2">{label}</h4>
+    <FormControl key="2"
+      type="text"
+      placeholder="Type name"
+      value={label}
+      className="form-control-small"
+      onChange={(e) => actions.setTypeLabel(typeId, e.target.value)}
+    />
   ]
 
   return (
@@ -32,7 +38,7 @@ export default ({
               <td>
                 <FormControl
                   type="text"
-                  placeholder="Type name"
+                  placeholder="Control name"
                   value={label}
                   onChange={(e) => actions.setTypeControlLabel(typeId, controlId, e.target.value)}
                 />

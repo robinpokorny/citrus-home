@@ -40,10 +40,20 @@ export const removeDevice = (deviceId) =>
 
 /* --- Device types --- */
 
+export const addNewType = () =>
+  ref
+    .child(`devicesTypes/`)
+    .push({ label: '' })
+
 export const addControlToType = (typeId) =>
   ref
     .child(`devicesTypes/${typeId}/controls/`)
     .push({ type: controlTypes.slider })
+
+export const setTypeLabel = (typeId, value) =>
+  ref
+    .child(`devicesTypes/${typeId}/label`)
+    .set(value)
 
 export const setTypeControlLabel = (typeId, controlId, value) =>
   ref

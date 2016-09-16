@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, NavItem } from 'react-bootstrap'
+import { Button, Nav, NavItem } from 'react-bootstrap'
 
 import Device from './Device'
 import DeviceType from './DeviceType'
@@ -16,6 +16,13 @@ export default ({ store, actions }) => (
     </div>
 
     <h2 id="devices">Devices</h2>
+
+    <NewDevice
+      actions={actions}
+      devicesTypes={store.devicesTypes}
+      newDevice={store.newDevice}
+    />
+
     {Object.entries(store.devices).map(([key, value]) =>
       <Device
         key={key}
@@ -26,13 +33,16 @@ export default ({ store, actions }) => (
       />
     )}
 
-    <NewDevice
-      actions={actions}
-      devicesTypes={store.devicesTypes}
-      newDevice={store.newDevice}
-    />
-
-    <h2 id="devices-types">Devices Types</h2>
+    <h2 id="devices-types">
+      Devices Types
+      <Button
+        bsStyle="primary"
+        onClick={actions.addNewType}
+        className="pull-right"
+      >
+        Add device type
+      </Button>
+    </h2>
     {Object.entries(store.devicesTypes).map(([key, value]) =>
       <DeviceType
         key={key}

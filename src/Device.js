@@ -1,9 +1,11 @@
 import React from 'react'
 import { Panel } from 'react-bootstrap'
-import { Button, ButtonGroup } from 'react-bootstrap'
+import { Button, ButtonGroup, Label } from 'react-bootstrap'
 
-const controlTypes = {
-  'button': (deviceId, controlId, value) => (
+import { controlTypes } from './config'
+
+const renderControlTypes = {
+  [controlTypes.button]: (deviceId, controlId, value) => (
     <Button
       key={controlId}
       bsStyle="primary"
@@ -12,9 +14,9 @@ const controlTypes = {
       {value.label}
     </Button>
   ),
-  'slider': (deviceId, controlId, value, current = 50, onChange) => (
+  [controlTypes.slider]: (deviceId, controlId, value, current = 50, onChange) => (
     <div key={controlId}>
-      <h4>{value.label}:</h4>
+      <h4>{value.label} <Label>{current}</Label>:</h4>
       <input
         type="range"
         min={0}
@@ -25,7 +27,7 @@ const controlTypes = {
       />
     </div>
   ),
-  'select': (deviceId, controlId, value, current = 0, onChange) => (
+  [controlTypes.select]: (deviceId, controlId, value, current = 0, onChange) => (
     <div key={controlId}>
       <h4>{value.label}:</h4>
       <select
@@ -64,7 +66,13 @@ export default ({
   return (
     <Panel header={title}>
       {Object.entries(type.controls).map(([controlId, value]) =>
-        controlTypes[value.type](deviceId, controlId, value, controls[controlId], actions.setControlValue)
+        renderControlTypes[value.type](
+          deviceId,
+          controlId,
+          value,
+          controls[controlId],
+          actions.setControlValue
+        )
       )}
     </Panel>
   )

@@ -1,9 +1,13 @@
 import ref from './firebase'
 
+/* --- Controls --- */
+
 export const setControlValue = (deviceId, controlId, value) =>
   ref
     .child(`devices/${deviceId}/controls/${controlId}/`)
     .set(value)
+
+/* --- Devices --- */
 
 export const setNewDeviceLabel = (label) =>
   ref.child('newDevice/label').set(label)
@@ -32,3 +36,23 @@ export const addNewDevice = () => {
 
 export const removeDevice = (deviceId) =>
   ref.child(`devices/${deviceId}`).remove()
+
+/* --- Device types --- */
+
+export const setTypeControlLabel = (typeId, controlId, value) =>
+  ref
+    .child(`devicesTypes/${typeId}/controls/${controlId}/label`)
+    .set(value)
+
+export const setTypeControlType = (typeId, controlId, value) =>
+  ref
+    .child(`devicesTypes/${typeId}/controls/${controlId}/type`)
+    .set(value)
+
+export const setTypeControlOptions = (typeId, controlId, value) => {
+  const options = value.split(',').map((s) => s.trim())
+  
+  ref
+    .child(`devicesTypes/${typeId}/controls/${controlId}/options`)
+    .set(options)
+}

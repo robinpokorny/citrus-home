@@ -1,6 +1,8 @@
 import React from 'react'
 import { Panel } from 'react-bootstrap'
-import { Button, ButtonGroup, Table } from 'react-bootstrap'
+import { Button, ButtonGroup, FormControl, Table } from 'react-bootstrap'
+
+import { controlTypes } from './config'
 
 export default ({
   id: typeId,
@@ -25,12 +27,41 @@ export default ({
     <Panel header={title}>
       <Table fill>
         <tbody>
-          {Object.entries(controls).map(([controlId, value]) =>
+          {Object.entries(controls).map(([controlId, { label, type, options = [] } = {}]) =>
             <tr key={controlId}>
-              <td>{value.label}</td>
-              <td>{value.type}</td>
               <td>
-                {value.type === 'select' && value.options.join(', ')}
+                <FormControl
+                  type="text"
+                  placeholder="Type name"
+                  value={label}
+                  onChange={(e) => actions.setTypeControlLabel(typeId, controlId, e.target.value)}
+                />
+              </td>
+              <td>
+                <FormControl
+                  componentClass="select"
+                  value={type}
+                  onChange={(e) => actions.setTypeControlType(typeId, controlId, e.target.value)}
+                >
+                  {Object.entries(controlTypes).map(([_, name]) =>
+                    <option key={name} value={name}>{name}</option>
+                  )}
+                </FormControl>
+              </td>
+              <td>
+                {
+                  type === 'select' &&
+                  <FormControl
+                    type="text"
+                    placeholder="Comma sepatated options"
+                    value={options.join(', ')}
+                    onChange={(e) => actions.setTypeControlOptions(
+                      typeId,
+                      controlId,
+                      e.target.value
+                    )}
+                  />
+                }
               </td>
             </tr>
           )}

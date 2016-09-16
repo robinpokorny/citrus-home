@@ -1,4 +1,5 @@
 import ref from './firebase'
+import { controlTypes } from './config'
 
 /* --- Controls --- */
 
@@ -39,6 +40,11 @@ export const removeDevice = (deviceId) =>
 
 /* --- Device types --- */
 
+export const addControlToType = (typeId) =>
+  ref
+    .child(`devicesTypes/${typeId}/controls/`)
+    .push({ type: controlTypes.slider })
+
 export const setTypeControlLabel = (typeId, controlId, value) =>
   ref
     .child(`devicesTypes/${typeId}/controls/${controlId}/label`)
@@ -51,7 +57,7 @@ export const setTypeControlType = (typeId, controlId, value) =>
 
 export const setTypeControlOptions = (typeId, controlId, value) => {
   const options = value.split(',').map((s) => s.trim())
-  
+
   ref
     .child(`devicesTypes/${typeId}/controls/${controlId}/options`)
     .set(options)

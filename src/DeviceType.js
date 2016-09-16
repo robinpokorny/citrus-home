@@ -14,7 +14,7 @@ export default ({
     <ButtonGroup key="1" className="pull-right">
       <Button
         bsStyle="success"
-        onClick={() => {}}
+        onClick={() => actions.addControlToType(typeId)}
       >
         Add control
       </Button>
@@ -27,7 +27,7 @@ export default ({
     <Panel header={title}>
       <Table fill>
         <tbody>
-          {Object.entries(controls).map(([controlId, { label, type, options = [] } = {}]) =>
+          {Object.entries(controls).map(([controlId, { label = '', type, options = [] } = {}]) =>
             <tr key={controlId}>
               <td>
                 <FormControl

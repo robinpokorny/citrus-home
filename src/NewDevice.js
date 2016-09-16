@@ -1,39 +1,42 @@
 import React from 'react'
-import { Button, ControlLabel, Form, FormGroup, FormControl } from 'react-bootstrap'
+import { Button, ControlLabel, Form, FormGroup, FormControl, Well } from 'react-bootstrap'
 
 export default ({
   devicesTypes,
   actions,
   newDevice: { label = '', typeId } = {}
 }) => (
-  <Form inline>
-    <FormGroup controlId="formInlineName">
-      <ControlLabel>Name</ControlLabel>
+  <Well>
+    <Form inline>
+      <FormGroup controlId="formInlineName">
+        <ControlLabel>Name</ControlLabel>
+        {' '}
+        <FormControl
+          type="text"
+          placeholder="Living room stereo"
+          value={label}
+          onChange={(e) => actions.setNewDeviceLabel(e.target.value)}
+        />
+      </FormGroup>
       {' '}
-      <FormControl
-        type="text"
-        placeholder="Living room stereo"
-        value={label}
-        onChange={(e) => actions.setNewDeviceLabel(e.target.value)}
-      />
-    </FormGroup>
-    {' '}
-    <FormGroup controlId="formInlineEmail">
-      <ControlLabel>Type</ControlLabel>
+      <FormGroup controlId="formInlineEmail">
+        <ControlLabel>Type</ControlLabel>
+        {' '}
+        <FormControl
+          componentClass="select"
+          value={typeId}
+          onChange={(e) => actions.setNewDeviceType(e.target.value)}
+        >
+          <option value="">-</option>
+          {Object.entries(devicesTypes).map(([key, value]) =>
+            <option key={key} value={key}>{value.label}</option>
+          )}
+        </FormControl>
+      </FormGroup>
       {' '}
-      <select
-        value={typeId}
-        onChange={(e) => actions.setNewDeviceType(e.target.value)}
-      >
-        <option></option>
-        {Object.entries(devicesTypes).map(([key, value]) =>
-          <option key={key} value={key}>{value.label}</option>
-        )}
-      </select>
-    </FormGroup>
-    {' '}
-    <Button onClick={actions.addNewDevice}>
-      Add device
-    </Button>
-  </Form>
+      <Button onClick={actions.addNewDevice}>
+        Add device
+      </Button>
+    </Form>
+  </Well>
 )

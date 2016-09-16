@@ -1,4 +1,5 @@
 import React from 'react'
+import { Nav, NavItem } from 'react-bootstrap'
 
 import Device from './Device'
 import NewDevice from './NewDevice'
@@ -6,10 +7,14 @@ import NewDevice from './NewDevice'
 export default ({ store, actions }) => (
   <div className="container">
     <div className="header clearfix">
+      <Nav bsStyle="pills" pullRight>
+        <NavItem href="#devices">Devices</NavItem>
+        <NavItem href="#devices-types">Devices Types</NavItem>
+      </Nav>
       <h3 className="text-muted">Citrus Home</h3>
     </div>
 
-    <h2>Devices</h2>
+    <h2 id="devices">Devices</h2>
     {Object.entries(store.devices).map(([key, value]) =>
       <Device
         key={key}
@@ -26,7 +31,7 @@ export default ({ store, actions }) => (
       newDevice={store.newDevice}
     />
 
-    <h2>Devices Types</h2>
+    <h2 id="devices-types">Devices Types</h2>
     <ul>
       {Object.entries(store.devicesTypes).map(([key, value]) =>
         <li key={key}>{value.label}</li>

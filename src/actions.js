@@ -23,7 +23,7 @@ export const addNewDevice = () => {
     .child('newDevice')
     .once('value')
     .then((snapshot) => snapshot.val())
-    .then(({label, typeId}) => {
+    .then(({label, typeId} = {}) => {
       if (label && typeId) addDevice(label, typeId)
     })
 }

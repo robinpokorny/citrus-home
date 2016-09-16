@@ -61,7 +61,11 @@ body {
 
 /* Supporting input in panel title */
 .form-control-small {
-  width: 40%
+  width: 40%;
+}
+
+.title-spaced {
+  margin-top: 100px;
 }
 
 /* Responsive: Portrait tablets and up */

@@ -34,7 +34,7 @@ export default ({ store, actions }) => (
       />
     )}
 
-    <h2 id="devices-types">
+    <h2 id="devices-types" className="title-spaced">
       Devices Types
       <Button
         bsStyle="primary"
